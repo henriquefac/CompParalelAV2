@@ -1,3 +1,5 @@
+import java.util.concurrent.ForkJoinPool;
+
 import CSVHandler.CSVWriter;
 import sort_algorith.*;
 import sort_algorith.paralel_sort.*;
@@ -6,6 +8,13 @@ import TestAlgorithm.Tester;
 
 public class App {
     public static void main(String[] args) {
+        int[] lista = {40, 1, 46, 5, 12, 5, 23};
+        SortAlgoPRL sort = new CountingSortPRL(null, null);
+        sort.setPool(new ForkJoinPool());
+        int[] ress = sort.sort(lista);
+        for (int i = 0; i < ress.length; i++){
+            System.out.println(ress[i]);
+        }
         try {
             // Tamanhos dos arrays a serem testados
             System.out.println("Iniciando os testes!");
@@ -26,12 +35,12 @@ public class App {
             // Usando a classe CSVWriter para gravar os resultados
             CSVWriter csvWriter = new CSVWriter(csvFile);
             String[] header = {"Tamanho", 
-                               "Tempo Médio Paralelo (nível 0)", 
-                               "Tempo Médio Paralelo (nível 1)", 
-                               "Tempo Médio Paralelo (nível 2)", 
-                               "Tempo Médio Paralelo (nível 3)",
-                               "Tempo Médio Paralelo (nível 4)", 
-                               "Tempo Médio Serial"};
+                               "Tempo Medio Paralelo (nível 0)", 
+                               "Tempo Medio Paralelo (nível 1)", 
+                               "Tempo Medio Paralelo (nível 2)", 
+                               "Tempo Medio Paralelo (nível 3)",
+                               "Tempo Medio Paralelo (nível 4)", 
+                               "Tempo Medio Serial"};
             csvWriter.writeHeader(header); // Escrevendo cabeçalho
 
             // Exibindo os resultados médios de tempo de execução
